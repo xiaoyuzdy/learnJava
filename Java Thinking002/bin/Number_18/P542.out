@@ -1,0 +1,40 @@
+1:package Number_18;
+2:
+3:import java.io.BufferedReader;
+4:import java.io.BufferedWriter;
+5:import java.io.FileWriter;
+6:import java.io.IOException;
+7:import java.io.PrintWriter;
+8:import java.io.StringReader;
+9:
+10:/**
+11: * 基本的文件输出
+12: * 
+13: * @author he
+14: * 
+15: */
+16:public class P542 {
+17:	private static final String filename = "F:/workspace/Java Thinking002/src/Number_18/P542.out";
+18:
+19:	public static void main(String[] args) throws IOException {
+20:		// 读入文件
+21:		BufferedReader in = new BufferedReader(
+22:				new StringReader(
+23:						P540.read("F:/workspace/Java Thinking002/src/Number_18/P542.java")));
+24:		// 写出文件
+25:		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
+26:				filename)));
+27:		String s;
+28:		int lineCount = 1;
+29:		while ((s = in.readLine()) != null) {
+30:			out.println(lineCount++ + ":" + s);
+31:		}
+32:
+33:		in.close();
+34:		out.close();
+35:
+36:		System.out.println(P540.read(filename));
+37:		
+38:	}
+39:
+40:}
