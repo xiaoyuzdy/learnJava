@@ -49,7 +49,7 @@ public class P664 {
 		System.out.println("is Daemon ? " + tt.isDaemon());
 		// 必须要有这句话，不然线程不运行 ，因为设置的是后台线程，而main是非后台线程，
 		// 所以当main结束后JVM会自动关闭所有后台线程
-		TimeUnit.MILLISECONDS.sleep(1);
+//		TimeUnit.MILLISECONDS.sleep(1);
 		// 休眠
 		// tt.sleep(1);
 	}
