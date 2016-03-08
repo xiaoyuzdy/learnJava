@@ -93,7 +93,7 @@ public class P704 {
 		ExecutorService eService = Executors.newCachedThreadPool();
 		eService.execute(new WaxOn(c));
 		eService.execute(new WaxOff(c));
-		TimeUnit.SECONDS.sleep(6);
+		TimeUnit.SECONDS.sleep(2);
 		eService.shutdown();
 	}
 }
