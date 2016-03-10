@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 class Car {
-	 private  volatile boolean waxOn = false;
+	private boolean waxOn = false;
 
 	synchronized void waxed() {
 		waxOn = true;
@@ -46,6 +46,7 @@ class WaxOn implements Runnable {
 	}
 
 	public void run() {
+		// 因将while()写在try语句里面 否则 线程终止后仍能继续运行
 		while (!Thread.interrupted()) {
 
 			try {
@@ -69,8 +70,9 @@ class WaxOff implements Runnable {
 	public WaxOff(Car c) {
 		car = c;
 	}
-
+	
 	public void run() {
+		// 因将while()写在try语句里面 否则 线程终止后仍能继续运行
 		while (!Thread.interrupted()) {
 
 			try {
@@ -80,6 +82,7 @@ class WaxOff implements Runnable {
 				car.buffed();
 
 			} catch (InterruptedException e) {
+				
 				System.out.println("Exiting Wax Off ");
 			}
 		}
@@ -94,6 +97,9 @@ public class P704 {
 		eService.execute(new WaxOn(c));
 		eService.execute(new WaxOff(c));
 		TimeUnit.SECONDS.sleep(2);
-		eService.shutdown();
+		// 启动一次顺序关闭，执行以前提交的任务，但不接受新任务。
+		// eService.shutdown();
+		// 试图停止所有正在执行的活动任务，暂停处理正在等待的任务，并返回等待执行的任务列表。
+		eService.shutdownNow();
 	}
 }
