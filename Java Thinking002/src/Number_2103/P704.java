@@ -20,6 +20,7 @@ class Car {
 	}
 
 	synchronized void waitForWaxing() throws InterruptedException {
+		//使用while编写该代码
 		while (waxOn == false) {
 			wait();
 		}
@@ -31,6 +32,7 @@ class Car {
 	}
 
 	synchronized void waitForBuffing() throws InterruptedException {
+		//使用while编写该代码
 		while (waxOn == true) {
 			wait();
 		}
@@ -38,6 +40,11 @@ class Car {
 
 }
 
+/**
+ * 如果Car被挂起，则该线程也会被
+ * @author he
+ *
+ */
 class WaxOn implements Runnable {
 	private Car car;
 
@@ -47,44 +54,50 @@ class WaxOn implements Runnable {
 
 	public void run() {
 		// 因将while()写在try语句里面 否则 线程终止后仍能继续运行
-		while (!Thread.interrupted()) {
 
-			try {
+		try {
+			while (!Thread.interrupted()) {
 				System.out.println("Wax On");
 				TimeUnit.MILLISECONDS.sleep(100);
 				car.waxed();
 				car.waitForBuffing();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				System.out.println("Exiting via interrupt");
 			}
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Exiting via interrupt");
 
 		}
 		System.out.println("Ending wax on task");
 	}
 }
 
+/**
+ * 如果Car被挂起，则该线程也会被
+ * @author he
+ *
+ */
 class WaxOff implements Runnable {
 	private Car car;
 
 	public WaxOff(Car c) {
 		car = c;
 	}
-	
+
 	public void run() {
 		// 因将while()写在try语句里面 否则 线程终止后仍能继续运行
-		while (!Thread.interrupted()) {
 
-			try {
+		try {
+			while (!Thread.interrupted()) {
 				car.waitForWaxing();
 				System.out.println("Wax Off");
 				TimeUnit.MILLISECONDS.sleep(100);
 				car.buffed();
-
-			} catch (InterruptedException e) {
-				
-				System.out.println("Exiting Wax Off ");
 			}
+
+		} catch (InterruptedException e) {
+
+			System.out.println("Exiting Wax Off ");
+
 		}
 		System.out.println("Ending Wax Off task");
 	}
