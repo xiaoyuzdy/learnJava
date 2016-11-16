@@ -20,7 +20,7 @@ class Car {
 	}
 
 	synchronized void waitForWaxing() throws InterruptedException {
-		//使用while编写该代码
+		// 使用while编写该代码
 		while (waxOn == false) {
 			wait();
 		}
@@ -32,7 +32,7 @@ class Car {
 	}
 
 	synchronized void waitForBuffing() throws InterruptedException {
-		//使用while编写该代码
+		// 使用while编写该代码
 		while (waxOn == true) {
 			wait();
 		}
@@ -42,6 +42,7 @@ class Car {
 
 /**
  * 如果Car被挂起，则该线程也会被
+ * 
  * @author he
  *
  */
@@ -73,6 +74,7 @@ class WaxOn implements Runnable {
 
 /**
  * 如果Car被挂起，则该线程也会被
+ * 
  * @author he
  *
  */
@@ -104,6 +106,8 @@ class WaxOff implements Runnable {
 }
 
 public class P704 {
+	
+
 	public static void main(String[] args) throws Exception {
 		Car c = new Car();
 		ExecutorService eService = Executors.newCachedThreadPool();
