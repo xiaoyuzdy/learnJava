@@ -21,6 +21,20 @@ class Number {
 	// i++;
 	// return i;
 	// }
+	
+	
+	/**
+	 * 同步控制块,注意因为是静态方法所以使用类名.class，如果是非静态方法使用this
+	 * @return
+	 */
+//	public  static int next() {
+//		synchronized(Number.class){
+//		 i++;
+//		 i++;
+//		}	
+//		return i;
+//	}
+	
 
 }
 

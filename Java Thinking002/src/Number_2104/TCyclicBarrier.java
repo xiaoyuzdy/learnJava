@@ -36,7 +36,7 @@ class Horse implements Runnable {
 				synchronized (this) {
 					strides += random.nextInt(3);// 随机增加步数
 				}
-				barrier.await();
+				barrier.await();//在所有参与者都已经在此 barrier上调用 await 方法之前，将一直等待。
 			}
 
 		} catch (Exception e) {
@@ -83,14 +83,14 @@ public class TCyclicBarrier {
 					System.out.println(horse.tracks());
 				}
 				// 如果有一匹马到达终点 线程终止
-				for (Horse horse2 : horses) {
-
-					if (horse2.getStrides() >= FINISH_LINE) {
-						System.out.println("Win " + horse2.id);
-						eService.shutdownNow();
-						return;
-					}
-				}
+//				for (Horse horse2 : horses) {
+//
+//					if (horse2.getStrides() >= FINISH_LINE) {
+//						System.out.println("Win " + horse2.id);
+//						eService.shutdownNow();
+//						return;
+//					}
+//				}
 				try {
 					TimeUnit.MILLISECONDS.sleep(sleeptime);
 				} catch (Exception e) {
