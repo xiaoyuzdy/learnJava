@@ -59,7 +59,6 @@ class Athlete implements Runnable {
 		} catch (InterruptedException e) {
 			// TODO: handle exception
 		} catch (BrokenBarrierException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
