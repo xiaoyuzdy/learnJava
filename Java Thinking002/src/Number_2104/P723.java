@@ -23,6 +23,7 @@ class TaskPortion implements Runnable {
 		this.latch = latch;
 	}
 
+
 	public void doWork() {
 		try {
 			TimeUnit.MILLISECONDS.sleep(random.nextInt(2000));
