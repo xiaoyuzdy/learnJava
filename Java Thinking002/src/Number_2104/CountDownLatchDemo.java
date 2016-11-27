@@ -59,7 +59,8 @@ class waitTask implements Runnable {
 
 	public void run() {
 		try {
-			latch.await(); // 如果计数器不为0阻塞
+			latch.await(); // 使当前线程在锁存器倒计数至零之前一直等待，除非线程被中断。
+						  //如果当前计数为零，则此方法立即返回。
 			System.out.println("Latch brrier passed for " + this);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -92,8 +93,7 @@ public class CountDownLatchDemo {
 
 }
 /**
- * 虽然先调用的是 waitTask，run方法中指向await(). 由于CountDownLatch的计数器不为0 所以阻塞 
- * 结果： 任务 xx  完成（全部执行完）
- * 		Latch brrier passed for WaitingTask x
+ * 虽然先调用的是 waitTask，run方法中指向await(). 由于CountDownLatch的计数器不为0 所以阻塞 结果： 任务 xx
+ * 完成（全部执行完） Latch brrier passed for WaitingTask x
  * 
  */
