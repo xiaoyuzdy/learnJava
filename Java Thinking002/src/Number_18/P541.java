@@ -7,6 +7,7 @@ import java.io.IOException;
 /**
  * 格式化的内存输入
  * 
+
  * @author he
  * 
  */
